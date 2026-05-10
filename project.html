@@ -304,6 +304,69 @@
             <p>Background concepts</p>
         </div>
 
+    <!-- Theory Section -->
+    <div id="theorySection" style="display:none; margin-top:30px;">
+        <div class="question-section">
+            <h3>Theory of Jacobians</h3>
+
+            <h4>1. What is a Jacobian?</h4>
+            <p>
+                The Jacobian is a matrix of first-order partial derivatives of a set of functions
+                with respect to a set of variables. It is used to study how several functions
+                change simultaneously.
+            </p>
+
+            <h4>2. General Form</h4>
+            <p>For functions f₁, f₂, ..., fₙ of variables x₁, x₂, ..., xₙ:</p>
+            <p>
+                J = [∂fᵢ/∂xⱼ]
+            </p>
+
+            <h4>3. Steps to Find Jacobian</h4>
+            <ol style="padding-left: 20px; margin-top: 10px;">
+                <li>Write the given functions.</li>
+                <li>Find partial derivatives of each function with respect to every variable.</li>
+                <li>Arrange these derivatives into a matrix.</li>
+                <li>Compute the determinant of the matrix.</li>
+                <li>Use the determinant to test dependence or independence.</li>
+            </ol>
+
+            <h4>4. Example</h4>
+            <p>
+                f₁ = x + y<br>
+                f₂ = x - y
+            </p>
+            <p>
+                Jacobian Matrix =
+            </p>
+            <pre style="background:#fff; padding:10px; border-radius:6px; overflow:auto;">
+|  1   1 |
+|  1  -1 |
+            </pre>
+            <p>Determinant = -2 ≠ 0, therefore the functions are independent.</p>
+
+            <h4>5. Dependency Rule</h4>
+            <p>
+                If J = 0 → Functions are Dependent<br>
+                If J ≠ 0 → Functions are Independent
+            </p>
+
+            <h4>6. Applications</h4>
+            <ul style="padding-left: 20px; margin-top: 10px;">
+                <li>Change of variables in multiple integration</li>
+                <li>Coordinate transformations</li>
+                <li>Engineering analysis</li>
+                <li>Machine learning and optimization</li>
+            </ul>
+
+            <h4>7. Summary</h4>
+            <p>
+                Jacobian = Matrix of partial derivatives.<br>
+                Determinant of the Jacobian tells whether functions are dependent or independent.
+            </p>
+        </div>
+    </div>
+
         <div class="section-card">
             <i class="fas fa-question-circle"></i>
             <h3>Pretest</h3>
@@ -384,12 +447,18 @@ document.addEventListener('DOMContentLoaded', function () {
             card.classList.add('active');
 
             const simulation = document.getElementById('simulationSection');
+            const theory = document.getElementById('theorySection');
             simulation.style.display = 'none';
+            theory.style.display = 'none';
 
             const sectionName = card.querySelector('h3').textContent;
 
             if (sectionName === 'Simulation') {
                 simulation.style.display = 'block';
+            }
+
+            if (sectionName === 'Theory') {
+                theory.style.display = 'block';
             }
 
             if (sectionName === 'Feedback') {
@@ -432,7 +501,7 @@ function startJacobian() {
         for (let i = 0; i < n; i++) {
             let row = [];
             for (let j = 0; j < n; j++) {
-                let derivative = math.derivative(functions[i], variables[j]).toString(); 
+                let derivative = math.derivative(functions[i], variables[j]).toString();
                 row.push(derivative);
 
                 html += `
@@ -460,7 +529,7 @@ function checkDerivatives() {
 
     for (let i = 0; i < n; i++) {
         for (let j = 0; j < n; j++) {
-            let user = document.getElementById(`d${i}${j}`).value.trim(); 
+            let user = document.getElementById(`d${i}${j}`).value.trim();
             let actual = jacobian[i][j];
 
             try {
