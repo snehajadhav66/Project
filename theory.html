@@ -1,0 +1,189 @@
+# `theory.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theory of Jacobians</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            border-left: 6px solid #3498db;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-top: 30px;
+            margin-bottom: 12px;
+            font-size: 24px;
+        }
+
+        p, li {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        ul, ol {
+            padding-left: 25px;
+        }
+
+        .formula {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .note {
+            background: #eaf6ff;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .back-button:hover {
+            background: #2c80b9;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h1><i class="fas fa-book"></i> Theory of Jacobians</h1>
+        <p class="subtitle">Interactive Learning Module</p>
+
+        <h2>1. What is a Jacobian?</h2>
+        <p>
+            The Jacobian is a matrix containing the first-order partial derivatives of a set of
+            functions with respect to a set of variables.
+        </p>
+        <p>
+            It tells us how several functions change simultaneously when the variables change.
+        </p>
+
+        <h2>2. General Form</h2>
+        <p>
+            For functions f₁, f₂, ..., fₙ of variables x₁, x₂, ..., xₙ:
+        </p>
+        <div class="formula">
+J = [ ∂fᵢ / ∂xⱼ ]
+        </div>
+
+        <h2>3. Step-by-Step Procedure</h2>
+        <ol>
+            <li>Write the given functions.</li>
+            <li>Find partial derivatives with respect to each variable.</li>
+            <li>Arrange them into the Jacobian matrix.</li>
+            <li>Calculate the determinant of the matrix.</li>
+            <li>Use the determinant to determine dependence or independence.</li>
+        </ol>
+
+        <h2>4. Example</h2>
+        <p>Given:</p>
+        <div class="formula">
+f₁ = x + y
+f₂ = x - y
+        </div>
+
+        <p>Partial derivatives:</p>
+        <div class="formula">
+∂f₁/∂x = 1      ∂f₁/∂y = 1
+∂f₂/∂x = 1      ∂f₂/∂y = -1
+        </div>
+
+        <p>Jacobian matrix:</p>
+        <div class="formula">
+| 1   1 |
+| 1  -1 |
+        </div>
+
+        <p>Determinant:</p>
+        <div class="formula">
+J = (1)(-1) - (1)(1) = -2
+        </div>
+
+        <p>Since J ≠ 0, the functions are independent.</p>
+
+        <h2>5. Dependency Rule</h2>
+        <div class="note">
+            <strong>If J = 0</strong> → Functions are <strong>Dependent</strong><br>
+            <strong>If J ≠ 0</strong> → Functions are <strong>Independent</strong>
+        </div>
+
+        <h2>6. Dependent Functions Example</h2>
+        <div class="formula">
+f₁ = x + y
+f₂ = 2x + 2y = 2f₁
+        </div>
+
+        <p>
+            Since one function can be expressed in terms of another, the functions are dependent.
+        </p>
+```
