@@ -586,12 +586,14 @@ document.addEventListener('DOMContentLoaded', function () {
             const simulation = document.getElementById('simulationSection');
             const pretest = document.getElementById('pretestSection');
             const posttest = document.getElementById('posttestSection');
-            const theory = document.getElementById('theorySection');
+            const references = document.getElementById('referencesSection');
+            const feedback = document.getElementById('feedbackSection');
 
             if (simulation) simulation.style.display = 'none';
             if (pretest) pretest.style.display = 'none';
             if (posttest) posttest.style.display = 'none';
-            if (theory) theory.style.display = 'none';
+            if (references) references.style.display = 'none';
+            if (feedback) feedback.style.display = 'none';
 
             const sectionName = card.querySelector('h3').textContent;
 
@@ -617,8 +619,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 startPosttest();
             }
 
+            const feedback = document.getElementById('feedbackSection');
+            if (feedback) feedback.style.display = 'none';
+            
             if (sectionName === 'Feedback') {
-                alert('Thank you for your feedback!');
+                feedback.style.display = 'block';
             }
         });
     });
@@ -865,6 +870,12 @@ function checkDependency() {
             '<br>Functions are INDEPENDENT';
     }
 }
+
+function submitFeedback() {
+    document.getElementById('feedbackMessage').innerHTML =
+        'Thank you for your valuable feedback!';
+}
+</script>
 </script>
 
 </body>
