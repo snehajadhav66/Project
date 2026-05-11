@@ -1,79 +1,44 @@
-# `theory.html`
-
-```html
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Theory of Jacobians</title>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: #f8f9fa; color: #333; line-height: 1.7; }
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
         .card {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
             padding: 40px;
             border-left: 6px solid #3498db;
         }
-
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 32px;
-        }
-
-        .subtitle {
-            color: #7f8c8d;
-            margin-bottom: 30px;
-        }
-
+        h1 { color: #2c3e50; margin-bottom: 10px; font-size: 34px; }
+        .subtitle { color: #7f8c8d; margin-bottom: 30px; }
         h2 {
-            color: #2c3e50;
-            margin-top: 30px;
+            margin-top: 35px;
             margin-bottom: 12px;
-            font-size: 24px;
+            color: #2c3e50;
+            font-size: 28px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 6px;
         }
-
-        p, li {
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-
-        ul, ol {
-            padding-left: 25px;
-        }
-
+        h3 { margin-top: 24px; margin-bottom: 10px; color: #34495e; }
+        p, li { font-size: 16px; margin-bottom: 10px; }
+        ul, ol { padding-left: 25px; }
         .formula {
             background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 14px;
             border-radius: 6px;
-            padding: 12px;
             margin: 12px 0;
             font-family: 'Courier New', monospace;
-            overflow-x: auto;
+            white-space: pre-wrap;
         }
-
         .note {
             background: #eaf6ff;
             border-left: 4px solid #3498db;
@@ -81,10 +46,16 @@
             border-radius: 6px;
             margin: 20px 0;
         }
-
+        .example {
+            background: #fcfcfc;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 22px;
+            margin-top: 25px;
+        }
         .back-button {
             display: inline-block;
-            margin-top: 30px;
+            margin-top: 40px;
             padding: 12px 24px;
             background: #3498db;
             color: white;
@@ -92,98 +63,149 @@
             border-radius: 6px;
             font-weight: 600;
         }
-
-        .back-button:hover {
-            background: #2c80b9;
-        }
-
+        .back-button:hover { background: #2c80b9; }
         @media (max-width: 768px) {
-            .card {
-                padding: 25px;
-            }
-
-            h1 {
-                font-size: 28px;
-            }
-
-            h2 {
-                font-size: 22px;
-            }
+            .card { padding: 25px; }
+            h1 { font-size: 28px; }
+            h2 { font-size: 24px; }
         }
     </style>
 </head>
 <body>
-
 <div class="container">
     <div class="card">
         <h1><i class="fas fa-book"></i> Theory of Jacobians</h1>
-        <p class="subtitle">Interactive Learning Module</p>
+        <p class="subtitle">Step-by-step learning module with solved examples from basic to advanced.</p>
 
-        <h2>1. What is a Jacobian?</h2>
-        <p>
-            The Jacobian is a matrix containing the first-order partial derivatives of a set of
-            functions with respect to a set of variables.
-        </p>
-        <p>
-            It tells us how several functions change simultaneously when the variables change.
-        </p>
+```
+    <h2>1. Introduction</h2>
+    <p>
+        The Jacobian is a matrix of first-order partial derivatives of several functions with
+        respect to several variables. It tells us how all functions change simultaneously.
+    </p>
 
-        <h2>2. General Form</h2>
-        <p>
-            For functions f₁, f₂, ..., fₙ of variables x₁, x₂, ..., xₙ:
-        </p>
-        <div class="formula">
-J = [ ∂fᵢ / ∂xⱼ ]
-        </div>
+    <div class="formula">J = [ ∂fᵢ / ∂xⱼ ]</div>
 
-        <h2>3. Step-by-Step Procedure</h2>
-        <ol>
-            <li>Write the given functions.</li>
-            <li>Find partial derivatives with respect to each variable.</li>
-            <li>Arrange them into the Jacobian matrix.</li>
-            <li>Calculate the determinant of the matrix.</li>
-            <li>Use the determinant to determine dependence or independence.</li>
-        </ol>
+    <h2>2. Dependency Rule</h2>
+    <div class="note">
+        <strong>If J = 0</strong> → Functions are Dependent<br>
+        <strong>If J ≠ 0</strong> → Functions are Independent
+    </div>
 
-        <h2>4. Example</h2>
-        <p>Given:</p>
-        <div class="formula">
-f₁ = x + y
-f₂ = x - y
-        </div>
+    <h2>3. Procedure to Find Jacobian</h2>
+    <ol>
+        <li>Write all functions.</li>
+        <li>Find all partial derivatives.</li>
+        <li>Arrange derivatives in matrix form.</li>
+        <li>Compute the determinant.</li>
+        <li>Interpret the result.</li>
+    </ol>
 
-        <p>Partial derivatives:</p>
-        <div class="formula">
-∂f₁/∂x = 1      ∂f₁/∂y = 1
-∂f₂/∂x = 1      ∂f₂/∂y = -1
-        </div>
+    <h2>4. Solved Examples</h2>
 
-        <p>Jacobian matrix:</p>
-        <div class="formula">
+    <div class="example">
+        <h3>Example 1: Simple Linear 2×2</h3>
+        <p><strong>Given:</strong> f₁ = x + y, f₂ = x − y</p>
+        <div class="formula">Jacobian Matrix:
+```
+
 | 1   1 |
 | 1  -1 |
-        </div>
 
-        <p>Determinant:</p>
-        <div class="formula">
-J = (1)(-1) - (1)(1) = -2
-        </div>
+J = (1)(-1) - (1)(1) = -2</div> <p><strong>Conclusion:</strong> J ≠ 0, so functions are independent.</p> </div>
 
-        <p>Since J ≠ 0, the functions are independent.</p>
-
-        <h2>5. Dependency Rule</h2>
-        <div class="note">
-            <strong>If J = 0</strong> → Functions are <strong>Dependent</strong><br>
-            <strong>If J ≠ 0</strong> → Functions are <strong>Independent</strong>
-        </div>
-
-        <h2>6. Dependent Functions Example</h2>
-        <div class="formula">
-f₁ = x + y
-f₂ = 2x + 2y = 2f₁
-        </div>
-
-        <p>
-            Since one function can be expressed in terms of another, the functions are dependent.
-        </p>
 ```
+    <div class="example">
+        <h3>Example 2: Polynomial 2×2</h3>
+        <p><strong>Given:</strong> f₁ = x² + y², f₂ = xy</p>
+        <div class="formula">∂f₁/∂x = 2x,   ∂f₁/∂y = 2y
+```
+
+∂f₂/∂x = y,    ∂f₂/∂y = x
+
+J = (2x)(x) - (2y)(y)
+J = 2x² - 2y²</div> <p><strong>Conclusion:</strong> Independent except when x² = y².</p> </div>
+
+```
+    <div class="example">
+        <h3>Example 3: Dependent Functions 2×2</h3>
+        <p><strong>Given:</strong> f₁ = x + y, f₂ = 2x + 2y = 2f₁</p>
+        <div class="formula">Jacobian Matrix:
+```
+
+| 1  1 |
+| 2  2 |
+
+J = (1)(2) - (1)(2) = 0</div> <p><strong>Conclusion:</strong> Functions are dependent.</p> </div>
+
+```
+    <div class="example">
+        <h3>Example 4: Trigonometric 2×2</h3>
+        <p><strong>Given:</strong> f₁ = sin x + y², f₂ = x eʸ</p>
+        <div class="formula">∂f₁/∂x = cos x,   ∂f₁/∂y = 2y
+```
+
+∂f₂/∂x = eʸ,      ∂f₂/∂y = x eʸ
+
+J = (cos x)(x eʸ) - (2y)(eʸ)
+J = eʸ(x cos x - 2y)</div> <p><strong>Conclusion:</strong> Generally independent.</p> </div>
+
+```
+    <div class="example">
+        <h3>Example 5: Linear 3×3</h3>
+        <p><strong>Given:</strong> f₁ = x + y + z, f₂ = x − y + z, f₃ = x + y − z</p>
+        <div class="formula">Jacobian Matrix:
+```
+
+| 1   1   1 |
+| 1  -1   1 |
+| 1   1  -1 |
+
+J = 4</div> <p><strong>Conclusion:</strong> Functions are independent.</p> </div>
+
+```
+    <div class="example">
+        <h3>Example 6: Advanced Trigonometric and Exponential 3×3</h3>
+        <p><strong>Given:</strong></p>
+        <div class="formula">f₁ = sin x + y² + eᶻ
+```
+
+f₂ = x cos y + z²
+f₃ = xyz</div> <div class="formula">∂f₁/∂x = cos x,   ∂f₁/∂y = 2y,       ∂f₁/∂z = eᶻ
+∂f₂/∂x = cos y,   ∂f₂/∂y = -x sin y, ∂f₂/∂z = 2z
+∂f₃/∂x = yz,      ∂f₃/∂y = xz,      ∂f₃/∂z = xy</div> <div class="formula">Jacobian Matrix:
+| cos x   2y        eᶻ |
+| cos y  -x sin y   2z |
+| yz      xz        xy |</div> <p><strong>Conclusion:</strong> The determinant is generally nonzero, so the functions are independent.</p> </div>
+
+```
+    <div class="example">
+        <h3>Example 7: Very Difficult Trigonometric Dependency 3×3</h3>
+        <p><strong>Given:</strong></p>
+        <div class="formula">f₁ = sin x + cos y + z
+```
+
+f₂ = 2 sin x + 2 cos y + 2z
+f₃ = x² + y² + z²</div> <p>Observe that:</p> <div class="formula">f₂ = 2f₁</div> <div class="formula">Jacobian Matrix:
+| cos x   -sin y   1 |
+| 2cos x  -2sin y  2 |
+| 2x      2y       2z |</div> <p>Row 2 = 2 × Row 1, therefore two rows are linearly dependent.</p> <div class="formula">J = 0</div> <p><strong>Conclusion:</strong> Functions are dependent.</p> </div>
+
+```
+    <h2>5. Summary</h2>
+    <ul>
+        <li>Jacobian is the matrix of partial derivatives.</li>
+        <li>Its determinant determines dependence or independence.</li>
+        <li>Zero determinant implies dependency.</li>
+        <li>Nonzero determinant implies independence.</li>
+    </ul>
+
+    <a href="project.html" class="back-button">
+        <i class="fas fa-arrow-left"></i> Back to Virtual Lab
+    </a>
+</div>
+```
+
+</div>
+</body>
+</html>
