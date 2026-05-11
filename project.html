@@ -401,6 +401,29 @@
         </div>
     </div>
 
+
+    <!-- Pretest Section -->
+    <div id="pretestSection" style="display:none; margin-top:30px;">
+        <div class="question-section">
+            <h3>Jacobian Pretest Quiz</h3>
+            <div id="pretestQuestion"></div>
+            <div id="pretestOptions"></div>
+            <button id="pretestNextBtn" class="feedback-button" style="display:none; margin-top:20px;">Next Question</button>
+            <div id="pretestScore" style="margin-top:20px; font-size:22px; font-weight:bold;"></div>
+        </div>
+    </div>
+
+    <!-- Posttest Section -->
+    <div id="posttestSection" style="display:none; margin-top:30px;">
+        <div class="question-section">
+            <h3>Jacobian Posttest Quiz</h3>
+            <div id="posttestQuestion"></div>
+            <div id="posttestOptions"></div>
+            <button id="posttestNextBtn" class="feedback-button" style="display:none; margin-top:20px;">Next Question</button>
+            <div id="posttestScore" style="margin-top:20px; font-size:22px; font-weight:bold;"></div>
+        </div>
+    </div>
+
     <!-- Simulation Section -->
     <div id="simulationSection" style="display:none; margin-top:30px;">
         <div class="question-section">
@@ -444,18 +467,33 @@ document.addEventListener('DOMContentLoaded', function () {
             card.classList.add('active');
 
             const simulation = document.getElementById('simulationSection');
+            const pretest = document.getElementById('pretestSection');
+            const posttest = document.getElementById('posttestSection');
             const theory = document.getElementById('theorySection');
-            simulation.style.display = 'none';
-            theory.style.display = 'none';
+
+            if (simulation) simulation.style.display = 'none';
+            if (pretest) pretest.style.display = 'none';
+            if (posttest) posttest.style.display = 'none';
+            if (theory) theory.style.display = 'none';
 
             const sectionName = card.querySelector('h3').textContent;
+
+            if (sectionName === 'Theory') {
+                window.location.href = 'theory.html';
+            }
+
+            if (sectionName === 'Pretest') {
+                pretest.style.display = 'block';
+                startPretest();
+            }
 
             if (sectionName === 'Simulation') {
                 simulation.style.display = 'block';
             }
 
-            if (sectionName === 'Theory') {
-                window.location.href = 'theory.html';
+            if (sectionName === 'Posttest') {
+                posttest.style.display = 'block';
+                startPosttest();
             }
 
             if (sectionName === 'Feedback') {
@@ -464,6 +502,115 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// ================= PRETEST QUESTIONS =================
+const pretestQuiz = [
+    { question: '1. Determinant of [[1,2],[3,4]] is:', options: ['-2', '2', '10', '0'], answer: 0 },
+    { question: '2. Determinant of identity matrix is:', options: ['0', '1', '2', '-1'], answer: 1 },
+    { question: '3. d/dx(x³) = ?', options: ['3x', 'x²', '3x²', 'x³'], answer: 2 },
+    { question: '4. d/dx(sin x) = ?', options: ['sin x', 'cos x', '-sin x', 'tan x'], answer: 1 },
+    { question: '5. ∂/∂x(x²+y²) = ?', options: ['2x', '2y', 'x+y', '0'], answer: 0 },
+    { question: '6. ∂/∂y(xy) = ?', options: ['x', 'y', 'xy', '1'], answer: 0 },
+    { question: '7. If two rows are equal, determinant is:', options: ['1', '0', '-1', 'Cannot say'], answer: 1 },
+    { question: '8. d/dx(eˣ) = ?', options: ['1', 'eˣ', 'xeˣ', '0'], answer: 1 },
+    { question: '9. 3×3 determinant is solved using:', options: ['Limits', 'Graphs', 'Expansion', 'Integration'], answer: 2 },
+    { question: '10. ∂/∂x(xy²) = ?', options: ['y²', '2xy', 'x²', 'xy'], answer: 0 }
+];
+
+// ================= POSTTEST QUESTIONS =================
+const posttestQuiz = [
+    { question: '1. If Jacobian ≠ 0 then functions are:', options: ['Dependent', 'Independent', 'Equal', 'Singular'], answer: 1 },
+    { question: '2. If u = x + y and v = 2x + 2y then functions are:', options: ['Independent', 'Orthogonal', 'Dependent', 'Continuous'], answer: 2 },
+    { question: '3. Determinant of [[2,1],[5,3]] is:', options: ['1', '-1', '6', '11'], answer: 0 },
+    { question: '4. Functions are dependent when:', options: ['J > 0', 'J < 0', 'J = 0', 'J = 1'], answer: 2 },
+    { question: '5. d/dx(x sin x) = ?', options: ['sin x', 'x cos x', 'sin x + x cos x', 'cos x - sin x'], answer: 2 },
+    { question: '6. ∂/∂y(xy + tan y) = ?', options: ['x + sec² y', 'y + tan y', 'x + tan y', 'xy + sec y'], answer: 0 },
+    { question: '7. d/dx(ln(x² + 1)) = ?', options: ['1/(x²+1)', '2x/(x²+1)', '2x ln x', 'ln(2x)'], answer: 1 },
+    { question: '8. If two rows are proportional then determinant is:', options: ['1', '∞', '0', '-1'], answer: 2 },
+    { question: '9. d/dx(eˣ cos x) = ?', options: ['eˣ cos x', 'eˣ(cos x - sin x)', 'eˣ sin x', 'cos x - sin x'], answer: 1 },
+    { question: '10. Jacobian of u = x² + y², v = x² - y² is:', options: ['-8xy', '8xy', '4xy', '2xy'], answer: 0 }
+];
+
+function createQuiz(prefix, questions, excellentCutoff, goodCutoff, excellentText, goodText, reviseText) {
+    let current = 0;
+    let score = 0;
+
+    const qEl = document.getElementById(prefix + 'Question');
+    const optionsEl = document.getElementById(prefix + 'Options');
+    const nextBtn = document.getElementById(prefix + 'NextBtn');
+    const scoreEl = document.getElementById(prefix + 'Score');
+
+    function loadQuestion() {
+        const q = questions[current];
+        qEl.style.display = 'block';
+        optionsEl.style.display = 'block';
+        qEl.innerHTML = '<h4>' + q.question + '</h4>';
+        optionsEl.innerHTML = '';
+        scoreEl.innerHTML = '';
+
+        q.options.forEach((option, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'feedback-button';
+            btn.style.display = 'block';
+            btn.style.width = '100%';
+            btn.style.margin = '10px 0';
+            btn.style.textAlign = 'left';
+            btn.textContent = option;
+            btn.onclick = function () {
+                checkAnswer(index, btn);
+            };
+            optionsEl.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(selected, clickedButton) {
+        const correct = questions[current].answer;
+        const buttons = optionsEl.querySelectorAll('button');
+        buttons.forEach(button => button.disabled = true);
+
+        if (selected === correct) {
+            clickedButton.style.background = '#22c55e';
+            score++;
+        } else {
+            clickedButton.style.background = '#ef4444';
+            buttons[correct].style.background = '#22c55e';
+        }
+
+        nextBtn.style.display = 'inline-block';
+    }
+
+    nextBtn.onclick = function () {
+        current++;
+        nextBtn.style.display = 'none';
+
+        if (current < questions.length) {
+            loadQuestion();
+        } else {
+            qEl.style.display = 'none';
+            optionsEl.style.display = 'none';
+            scoreEl.innerHTML = '<h2>Your Score: ' + score + '/' + questions.length + '</h2>';
+
+            if (score >= excellentCutoff) {
+                scoreEl.innerHTML += '<h3>' + excellentText + '</h3>';
+            } else if (score >= goodCutoff) {
+                scoreEl.innerHTML += '<h3>' + goodText + '</h3>';
+            } else {
+                scoreEl.innerHTML += '<h3>' + reviseText + '</h3>';
+            }
+        }
+    };
+
+    return function startQuiz() {
+        current = 0;
+        score = 0;
+        nextBtn.style.display = 'none';
+        loadQuestion();
+    };
+}
+
+const startPretest = createQuiz('pretest', pretestQuiz, 8, 5, 'Excellent!', 'Good Job!', 'Revise Basics Again.');
+const startPosttest = createQuiz('posttest', posttestQuiz, 8, 5, 'Excellent! You mastered Jacobians.', 'Good Work! Practice a little more.', 'Revise the concepts again.');
+
 
 let variables = [];
 let functions = [];
