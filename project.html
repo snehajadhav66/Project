@@ -300,6 +300,38 @@
             <h3>Theory</h3>
             <p>Background concepts</p>
         </div>
+        <!-- Aim Section -->
+<div id="aimSection" style="display:block; margin-top:30px;">
+    <div class="question-section">
+        <h3>Aim of the Experiment</h3>
+
+        <p>
+            To develop an interactive virtual laboratory for understanding and computing
+            Jacobians of functions of two or more variables.
+        </p>
+
+        <h4>Objectives</h4>
+        <ul style="padding-left: 20px;">
+            <li>To understand the concept of partial differentiation.</li>
+            <li>To construct the Jacobian matrix for a given set of functions.</li>
+            <li>To evaluate the Jacobian determinant.</li>
+            <li>To determine whether functions are dependent or independent.</li>
+            <li>To verify manually calculated derivatives and determinants using simulation.</li>
+            <li>To strengthen conceptual understanding through pretests, posttests, and worked examples.</li>
+            <li>To apply Jacobians in coordinate transformations and engineering problems.</li>
+        </ul>
+
+        <h4>Expected Learning Outcomes</h4>
+        <ul style="padding-left: 20px;">
+            <li>Students will be able to compute first-order partial derivatives accurately.</li>
+            <li>Students will be able to form 2×2 and 3×3 Jacobian matrices.</li>
+            <li>Students will be able to evaluate determinants of Jacobians.</li>
+            <li>Students will be able to identify functional dependence and independence.</li>
+            <li>Students will gain confidence in solving Jacobian problems from basic to advanced level.</li>
+        </ul>
+    </div>
+</div>
+        
 
     <!-- Theory Section -->
     <div id="theorySection" style="display:none; margin-top:30px;">
@@ -471,6 +503,73 @@
             <li>Math.js Documentation.</li>
             <li>Paul's Online Math Notes.</li>
         </ol>
+    </div>
+</div>
+    <!-- Feedback Section -->
+<div id="feedbackSection" style="display:none; margin-top:30px;">
+    <div class="question-section">
+        <h3>Feedback Form</h3>
+        <p>
+            We value your feedback. Please share your experience using this virtual lab.
+        </p>
+
+        <label for="studentName"><strong>Name:</strong></label><br>
+        <input type="text" id="studentName"
+               placeholder="Enter your name"
+               style="padding:8px; width:100%; max-width:500px;"><br><br>
+
+        <label for="studentClass"><strong>Class / Division:</strong></label><br>
+        <input type="text" id="studentClass"
+               placeholder="Enter your class or division"
+               style="padding:8px; width:100%; max-width:500px;"><br><br>
+
+        <label for="rating"><strong>Overall Rating:</strong></label><br>
+        <select id="rating"
+                style="padding:8px; width:100%; max-width:200px;">
+            <option value="">Select Rating</option>
+            <option>⭐ 5 - Excellent</option>
+            <option>⭐ 4 - Very Good</option>
+            <option>⭐ 3 - Good</option>
+            <option>⭐ 2 - Fair</option>
+            <option>⭐ 1 - Poor</option>
+        </select><br><br>
+
+        <label for="conceptUnderstanding">
+            <strong>Did this virtual lab improve your understanding of Jacobians?</strong>
+        </label><br>
+        <select id="conceptUnderstanding"
+                style="padding:8px; width:100%; max-width:300px;">
+            <option value="">Select</option>
+            <option>Yes, significantly</option>
+            <option>Yes, somewhat</option>
+            <option>Neutral</option>
+            <option>No</option>
+        </select><br><br>
+
+        <label for="favoriteSection"><strong>Most Helpful Section:</strong></label><br>
+        <select id="favoriteSection"
+                style="padding:8px; width:100%; max-width:300px;">
+            <option value="">Select</option>
+            <option>Aim</option>
+            <option>Theory</option>
+            <option>Pretest</option>
+            <option>Simulation</option>
+            <option>Posttest</option>
+            <option>References</option>
+        </select><br><br>
+
+        <label for="comments"><strong>Suggestions / Comments:</strong></label><br>
+        <textarea id="comments"
+                  rows="5"
+                  placeholder="Write your feedback here..."
+                  style="padding:8px; width:100%; max-width:700px;"></textarea><br><br>
+
+        <button class="feedback-button" onclick="submitFeedback()">
+            Submit Feedback
+        </button>
+
+        <div id="feedbackMessage"
+             style="margin-top:20px; font-weight:bold; color:#22c55e;"></div>
     </div>
 </div>
 
