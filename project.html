@@ -532,7 +532,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (references) references.style.display = 'none';
             if (feedback) feedback.style.display = 'none';
 
-            const sectionName = card.querySelector('h3').textContent;
+            const sectionName = card.querySelector('h3').textContent.trim();
 
             if (sectionName === 'Aim'){
                 window.location.href = 'aim.html';
@@ -555,7 +555,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 posttest.style.display = 'block';
                 startPosttest();
             }
-            if (sectionName === 'References') {
+            if (sectionName === 'References' && references) {
                 references.style.display = 'block';
             }
             if (sectionName === 'Contributors') {
