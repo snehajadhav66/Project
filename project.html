@@ -410,6 +410,29 @@
         </ol>
     </div>
 </div>
+    <!-- Contributors Section -->
+<div id="contributorsSection" style="display:none; margin-top:30px;">
+    <div class="question-section">
+        <h3>Contributors</h3>
+
+        <h4>Student Contributors</h4>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+            <li><strong>Sneha Mahendra Jadhav</strong> (125B1E066)</li>
+            <li><strong>Aadya Vilas Bawaskar</strong> (125B1E072)</li>
+        </ul>
+
+        <h4 style="margin-top: 20px;">Guiding Faculty</h4>
+        <ul style="padding-left: 20px; line-height: 1.8;">
+            <li><strong>Mr. Ganesh N. Tarte</strong></li>
+        </ul>
+
+        <p style="margin-top: 20px;">
+            This virtual laboratory was developed as part of the Engineering Mathematics
+            course under the guidance of the Applied Sciences & Humanities Department,
+            Pimpri Chinchwad College of Engineering.
+        </p>
+    </div>
+</div>
     <!-- Feedback Section -->
 <div id="feedbackSection" style="display:none; margin-top:30px;">
     <div class="question-section">
@@ -525,12 +548,15 @@ document.addEventListener('DOMContentLoaded', function () {
             const posttest = document.getElementById('posttestSection');
             const references = document.getElementById('referencesSection');
             const feedback = document.getElementById('feedbackSection');
+            const contributors = document.getElementById('contributorsSection');
+
 
             if (simulation) simulation.style.display = 'none';
             if (pretest) pretest.style.display = 'none';
             if (posttest) posttest.style.display = 'none';
             if (references) references.style.display = 'none';
             if (feedback) feedback.style.display = 'none';
+            if (contributors) contributors.style.display = 'none';
 
             const sectionName = card.querySelector('h3').textContent.trim();
 
@@ -558,8 +584,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (sectionName === 'References' && references) {
                 references.style.display = 'block';
             }
-            if (sectionName === 'Contributors') {
-                alert('Contributors section will be added soon.');
+            if (sectionName === 'Contributors' && contributors) {
+                contributors.style.display = 'block';
             }
             if (sectionName === 'Feedback') {
                 feedback.style.display = 'block';
