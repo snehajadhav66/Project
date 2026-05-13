@@ -6,6 +6,7 @@
     <title>Virtual Labs - Jacobians</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Math.js for symbolic derivatives and evaluation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
 
     <style>
@@ -211,7 +212,7 @@
             background: linear-gradient(to right, #2c80b9, #216794);
         }
 
-        input {
+        input, select, textarea {
             border: 1px solid #ccc;
             border-radius: 6px;
         }
@@ -289,242 +290,57 @@
     </div>
 
     <div class="aim-sections">
-        <div class="section-card active">
+        <div class="section-card" data-section="aim">
             <i class="fas fa-bullseye"></i>
             <h3>Aim</h3>
             <p>Objective of the experiment</p>
         </div>
 
-        <div class="section-card">
+        <div class="section-card" data-section="theory">
             <i class="fas fa-book"></i>
             <h3>Theory</h3>
             <p>Background concepts</p>
         </div>
         
-        <div class="section-card">
+        <div class="section-card" data-section="pretest">
             <i class="fas fa-question-circle"></i>
             <h3>Pretest</h3>
             <p>Pre-experiment assessment</p>
         </div>
 
-        <div class="section-card">
+        <div class="section-card" data-section="simulation">
             <i class="fas fa-desktop"></i>
             <h3>Simulation</h3>
             <p>Interactive simulation</p>
         </div>
 
-        <div class="section-card">
+        <div class="section-card" data-section="posttest">
             <i class="fas fa-clipboard-check"></i>
             <h3>Posttest</h3>
             <p>Post-experiment assessment</p>
         </div>
 
-        <div class="section-card">
+        <div class="section-card" data-section="references">
             <i class="fas fa-book-open"></i>
             <h3>References</h3>
             <p>Further reading materials</p>
         </div>
 
-        <div class="section-card">
+        <div class="section-card" data-section="contributors">
             <i class="fas fa-users"></i>
             <h3>Contributors</h3>
             <p>People involved</p>
         </div>
 
-        <div class="section-card feedback-card">
+        <div class="section-card" data-section="feedback">
             <i class="fas fa-comment-alt"></i>
             <h3>Feedback</h3>
             <p>Share your experience</p>
         </div>
     </div>
 
-
-    <!-- Pretest Section -->
-    <div id="pretestSection" style="display:none; margin-top:30px;">
-        <div class="question-section">
-            <h3>Jacobian Pretest Quiz</h3>
-            <div id="pretestQuestion"></div>
-            <div id="pretestOptions"></div>
-            <button id="pretestNextBtn" class="feedback-button" style="display:none; margin-top:20px;">Next Question</button>
-            <div id="pretestScore" style="margin-top:20px; font-size:22px; font-weight:bold;"></div>
-        </div>
-    </div>
-
-    <!-- Posttest Section -->
-    <div id="posttestSection" style="display:none; margin-top:30px;">
-        <div class="question-section">
-            <h3>Jacobian Posttest Quiz</h3>
-            <div id="posttestQuestion"></div>
-            <div id="posttestOptions"></div>
-            <button id="posttestNextBtn" class="feedback-button" style="display:none; margin-top:20px;">Next Question</button>
-            <div id="posttestScore" style="margin-top:20px; font-size:22px; font-weight:bold;"></div>
-        </div>
-    </div>
-    
-    <!-- References Section -->
-<div id="referencesSection" style="display:none; margin-top:30px;">
-    <div class="question-section">
-        <h3>References and Further Reading Materials</h3>
-
-        <h4>📚 Textbooks</h4>
-        <ol style="padding-left: 20px;">
-            <li><strong>Higher Engineering Mathematics</strong> by B. S. Grewal</li>
-            <li><strong>Advanced Engineering Mathematics</strong> by Erwin Kreyszig</li>
-            <li><strong>Thomas' Calculus</strong> by George B. Thomas</li>
-            <li><strong>Calculus</strong> by James Stewart</li>
-        </ol>
-
-        <h4>🌐 Online Learning Resources</h4>
-        <ul style="padding-left: 20px;">
-            <li><a href="https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/" target="_blank">MIT OpenCourseWare – Multivariable Calculus</a></li>
-            <li><a href="https://tutorial.math.lamar.edu/classes/calciii/changeofvariables.aspx" target="_blank">Paul's Online Math Notes – Jacobians</a></li>
-            <li><a href="https://www.khanacademy.org/math/multivariable-calculus" target="_blank">Khan Academy – Multivariable Calculus</a></li>
-            <li><a href="https://mathworld.wolfram.com/Jacobian.html" target="_blank">Wolfram MathWorld – Jacobian</a></li>
-            <li><a href="https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant" target="_blank">Wikipedia – Jacobian Matrix and Determinant</a></li>
-        </ul>
-
-        <h4>🎥 Video Lectures</h4>
-        <ul style="padding-left: 20px;">
-            <li><a href="https://nptel.ac.in/courses/111106101" target="_blank">NPTEL – Engineering Mathematics</a></li>
-            <li><a href="https://www.youtube.com/@ProfessorLeonard" target="_blank">Professor Leonard – Calculus 3</a></li>
-            <li><a href="https://www.youtube.com/@mitocw" target="_blank">MIT OpenCourseWare YouTube</a></li>
-        </ul>
-
-        <h4>🧮 Computational Tools</h4>
-        <ul style="padding-left: 20px;">
-            <li><a href="https://www.sympy.org/" target="_blank">SymPy</a></li>
-            <li><a href="https://mathjs.org/" target="_blank">Math.js</a></li>
-            <li><a href="https://www.wolframalpha.com/" target="_blank">WolframAlpha</a></li>
-            <li><a href="https://www.geogebra.org/" target="_blank">GeoGebra</a></li>
-        </ul>
-
-        <h4>📄 Suggested Citation List</h4>
-        <ol style="padding-left: 20px;">
-            <li>Grewal, B. S. <em>Higher Engineering Mathematics</em>. Khanna Publishers.</li>
-            <li>Kreyszig, E. <em>Advanced Engineering Mathematics</em>. Wiley.</li>
-            <li>Thomas, G. B. <em>Thomas' Calculus</em>. Pearson.</li>
-            <li>MIT OpenCourseWare. <em>Multivariable Calculus</em>.</li>
-            <li>SymPy Documentation.</li>
-            <li>Math.js Documentation.</li>
-            <li>Paul's Online Math Notes.</li>
-        </ol>
-    </div>
-</div>
-    <!-- Contributors Section -->
-<div id="contributorsSection" style="display:none; margin-top:30px;">
-    <div class="question-section">
-        <h3>Contributors</h3>
-
-        <h4>Student Contributors</h4>
-        <ul style="padding-left: 20px; line-height: 1.8;">
-            <li><strong>Sneha Mahendra Jadhav</strong> (125B1E066)</li>
-            <li><strong>Aadya Vilas Bawaskar</strong> (125B1E072)</li>
-        </ul>
-
-        <h4 style="margin-top: 20px;">Guiding Faculty</h4>
-        <ul style="padding-left: 20px; line-height: 1.8;">
-            <li><strong>Mr. Ganesh N. Tarte</strong></li>
-        </ul>
-
-        <p style="margin-top: 20px;">
-            This virtual laboratory was developed as part of the Engineering Mathematics
-            course under the guidance of the Applied Sciences & Humanities Department,
-            Pimpri Chinchwad College of Engineering.
-        </p>
-    </div>
-</div>
-    <!-- Feedback Section -->
-<div id="feedbackSection" style="display:none; margin-top:30px;">
-    <div class="question-section">
-        <h3>Feedback Form</h3>
-        <p>
-            We value your feedback. Please share your experience using this virtual lab.
-        </p>
-
-        <label for="studentName"><strong>Name:</strong></label><br>
-        <input type="text" id="studentName"
-               placeholder="Enter your name"
-               style="padding:8px; width:100%; max-width:500px;"><br><br>
-
-        <label for="studentClass"><strong>Class / Division:</strong></label><br>
-        <input type="text" id="studentClass"
-               placeholder="Enter your class or division"
-               style="padding:8px; width:100%; max-width:500px;"><br><br>
-
-        <label for="rating"><strong>Overall Rating:</strong></label><br>
-        <select id="rating"
-                style="padding:8px; width:100%; max-width:200px;">
-            <option value="">Select Rating</option>
-            <option>⭐ 5 - Excellent</option>
-            <option>⭐ 4 - Very Good</option>
-            <option>⭐ 3 - Good</option>
-            <option>⭐ 2 - Fair</option>
-            <option>⭐ 1 - Poor</option>
-        </select><br><br>
-
-        <label for="conceptUnderstanding">
-            <strong>Did this virtual lab improve your understanding of Jacobians?</strong>
-        </label><br>
-        <select id="conceptUnderstanding"
-                style="padding:8px; width:100%; max-width:300px;">
-            <option value="">Select</option>
-            <option>Yes, significantly</option>
-            <option>Yes, somewhat</option>
-            <option>Neutral</option>
-            <option>No</option>
-        </select><br><br>
-
-        <label for="favoriteSection"><strong>Most Helpful Section:</strong></label><br>
-        <select id="favoriteSection"
-                style="padding:8px; width:100%; max-width:300px;">
-            <option value="">Select</option>
-            <option>Aim</option>
-            <option>Theory</option>
-            <option>Pretest</option>
-            <option>Simulation</option>
-            <option>Posttest</option>
-            <option>References</option>
-        </select><br><br>
-
-        <label for="comments"><strong>Suggestions / Comments:</strong></label><br>
-        <textarea id="comments"
-                  rows="5"
-                  placeholder="Write your feedback here..."
-                  style="padding:8px; width:100%; max-width:700px;"></textarea><br><br>
-
-        <button class="feedback-button" onclick="submitFeedback()">
-            Submit Feedback
-        </button>
-
-        <div id="feedbackMessage"
-             style="margin-top:20px; font-weight:bold; color:#22c55e;"></div>
-    </div>
-</div>
-
-    <!-- Simulation Section -->
-    <div id="simulationSection" style="display:none; margin-top:30px;">
-        <div class="question-section">
-            <h3>Jacobian Active Learning Tool</h3>
-
-            <label>Number of variables:</label><br>
-            <input type="number" id="n" min="1"
-                   style="padding:8px; width:100%; max-width:300px;"><br><br>
-
-            <label>Functions (comma separated):</label><br>
-            <input type="text" id="functions"
-                   placeholder="x1+x2, x1-x2"
-                   style="padding:8px; width:100%; max-width:500px;"><br><br>
-
-            <button class="feedback-button" onclick="startJacobian()">
-                Start Simulation
-            </button>
-
-            <div id="derivatives" style="margin-top:20px;"></div>
-            <div id="determinant" style="margin-top:20px;"></div>
-            <div id="dependency" style="margin-top:20px;"></div>
-            <div id="result" style="margin-top:20px; font-weight:bold;"></div>
-        </div>
-    </div>
+    <!-- Placeholder for inline content for sections that are NOT new-page (Aim, Theory, References, Contributors remain inline) -->
+    <div id="inlineContentContainer"></div>
 </main>
 
 <footer class="container">
@@ -535,312 +351,226 @@
 </footer>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const sectionCards = document.querySelectorAll('.section-card');
-
-    sectionCards.forEach(card => {
-        card.addEventListener('click', () => {
-            sectionCards.forEach(c => c.classList.remove('active'));
-            card.classList.add('active');
-
-            const simulation = document.getElementById('simulationSection');
-            const pretest = document.getElementById('pretestSection');
-            const posttest = document.getElementById('posttestSection');
-            const references = document.getElementById('referencesSection');
-            const feedback = document.getElementById('feedbackSection');
-            const contributors = document.getElementById('contributorsSection');
-
-
-            if (simulation) simulation.style.display = 'none';
-            if (pretest) pretest.style.display = 'none';
-            if (posttest) posttest.style.display = 'none';
-            if (references) references.style.display = 'none';
-            if (feedback) feedback.style.display = 'none';
-            if (contributors) contributors.style.display = 'none';
-
-            const sectionName = card.querySelector('h3').textContent.trim();
-
-            if (sectionName === 'Aim'){
-                window.location.href = 'aim.html';
-             }
-
-            if (sectionName === 'Theory') {
-                window.location.href = 'theory.html';
-            }
-
-            if (sectionName === 'Pretest') {
-                pretest.style.display = 'block';
-                startPretest();
-            }
-
-            if (sectionName === 'Simulation') {
-                simulation.style.display = 'block';
-            }
-
-            if (sectionName === 'Posttest') {
-                posttest.style.display = 'block';
-                startPosttest();
-            }
-            if (sectionName === 'References' && references) {
-                references.style.display = 'block';
-            }
-            if (sectionName === 'Contributors' && contributors) {
-                contributors.style.display = 'block';
-            }
-            if (sectionName === 'Feedback') {
-                feedback.style.display = 'block';
-            }
-        });
-    });
-});
-
-// ================= PRETEST QUESTIONS =================
-const pretestQuiz = [
-    { question: '1. Determinant of [[1,2],[3,4]] is:', options: ['-2', '2', '10', '0'], answer: 0 },
-    { question: '2. Determinant of identity matrix is:', options: ['0', '1', '2', '-1'], answer: 1 },
-    { question: '3. d/dx(x³) = ?', options: ['3x', 'x²', '3x²', 'x³'], answer: 2 },
-    { question: '4. d/dx(sin x) = ?', options: ['sin x', 'cos x', '-sin x', 'tan x'], answer: 1 },
-    { question: '5. ∂/∂x(x²+y²) = ?', options: ['2x', '2y', 'x+y', '0'], answer: 0 },
-    { question: '6. ∂/∂y(xy) = ?', options: ['x', 'y', 'xy', '1'], answer: 0 },
-    { question: '7. If two rows are equal, determinant is:', options: ['1', '0', '-1', 'Cannot say'], answer: 1 },
-    { question: '8. d/dx(eˣ) = ?', options: ['1', 'eˣ', 'xeˣ', '0'], answer: 1 },
-    { question: '9. 3×3 determinant is solved using:', options: ['Limits', 'Graphs', 'Expansion', 'Integration'], answer: 2 },
-    { question: '10. ∂/∂x(xy²) = ?', options: ['y²', '2xy', 'x²', 'xy'], answer: 0 }
-];
-
-// ================= POSTTEST QUESTIONS =================
-const posttestQuiz = [
-    { question: '1. If Jacobian ≠ 0 then functions are:', options: ['Dependent', 'Independent', 'Equal', 'Singular'], answer: 1 },
-    { question: '2. If u = x + y and v = 2x + 2y then functions are:', options: ['Independent', 'Orthogonal', 'Dependent', 'Continuous'], answer: 2 },
-    { question: '3. Determinant of [[2,1],[5,3]] is:', options: ['1', '-1', '6', '11'], answer: 0 },
-    { question: '4. Functions are dependent when:', options: ['J > 0', 'J < 0', 'J = 0', 'J = 1'], answer: 2 },
-    { question: '5. d/dx(x sin x) = ?', options: ['sin x', 'x cos x', 'sin x + x cos x', 'cos x - sin x'], answer: 2 },
-    { question: '6. ∂/∂y(xy + tan y) = ?', options: ['x + sec² y', 'y + tan y', 'x + tan y', 'xy + sec y'], answer: 0 },
-    { question: '7. d/dx(ln(x² + 1)) = ?', options: ['1/(x²+1)', '2x/(x²+1)', '2x ln x', 'ln(2x)'], answer: 1 },
-    { question: '8. If two rows are proportional then determinant is:', options: ['1', '∞', '0', '-1'], answer: 2 },
-    { question: '9. d/dx(eˣ cos x) = ?', options: ['eˣ cos x', 'eˣ(cos x - sin x)', 'eˣ sin x', 'cos x - sin x'], answer: 1 },
-    { question: '10. Jacobian of u = x² + y², v = x² - y² is:', options: ['-8xy', '8xy', '4xy', '2xy'], answer: 0 }
-];
-
-function createQuiz(prefix, questions, excellentCutoff, goodCutoff, excellentText, goodText, reviseText) {
-    let current = 0;
-    let score = 0;
-
-    const qEl = document.getElementById(prefix + 'Question');
-    const optionsEl = document.getElementById(prefix + 'Options');
-    const nextBtn = document.getElementById(prefix + 'NextBtn');
-    const scoreEl = document.getElementById(prefix + 'Score');
-
-    function loadQuestion() {
-        const q = questions[current];
-        qEl.style.display = 'block';
-        optionsEl.style.display = 'block';
-        qEl.innerHTML = '<h4>' + q.question + '</h4>';
-        optionsEl.innerHTML = '';
-        scoreEl.innerHTML = '';
-
-        q.options.forEach((option, index) => {
-            const btn = document.createElement('button');
-            btn.className = 'feedback-button';
-            btn.style.display = 'block';
-            btn.style.width = '100%';
-            btn.style.margin = '10px 0';
-            btn.style.textAlign = 'left';
-            btn.textContent = option;
-            btn.onclick = function () {
-                checkAnswer(index, btn);
-            };
-            optionsEl.appendChild(btn);
-        });
-    }
-
-    function checkAnswer(selected, clickedButton) {
-        const correct = questions[current].answer;
-        const buttons = optionsEl.querySelectorAll('button');
-        buttons.forEach(button => button.disabled = true);
-
-        if (selected === correct) {
-            clickedButton.style.background = '#22c55e';
-            score++;
+    // Helper to open a new tab/window with full interactive page content for Pretest, Posttest, Simulation, Feedback
+    function openFullPage(type) {
+        let pageContent = '';
+        const titlePrefix = 'Virtual Labs - Jacobians | ';
+        
+        if (type === 'pretest') {
+            pageContent = generatePretestPage();
+        } else if (type === 'posttest') {
+            pageContent = generatePosttestPage();
+        } else if (type === 'simulation') {
+            pageContent = generateSimulationPage();
+        } else if (type === 'feedback') {
+            pageContent = generateFeedbackPage();
+        }
+        
+        const newWindow = window.open();
+        if (newWindow) {
+            newWindow.document.write(pageContent);
+            newWindow.document.close();
         } else {
-            clickedButton.style.background = '#ef4444';
-            buttons[correct].style.background = '#22c55e';
+            alert("Please allow pop-ups to open new pages for Pretest, Posttest, Simulation, and Feedback.");
         }
-
-        nextBtn.style.display = 'inline-block';
     }
-
-    nextBtn.onclick = function () {
-        current++;
-        nextBtn.style.display = 'none';
-
-        if (current < questions.length) {
-            loadQuestion();
-        } else {
-            qEl.style.display = 'none';
-            optionsEl.style.display = 'none';
-            scoreEl.innerHTML = '<h2>Your Score: ' + score + '/' + questions.length + '</h2>';
-
-            if (score >= excellentCutoff) {
-                scoreEl.innerHTML += '<h3>' + excellentText + '</h3>';
-            } else if (score >= goodCutoff) {
-                scoreEl.innerHTML += '<h3>' + goodText + '</h3>';
-            } else {
-                scoreEl.innerHTML += '<h3>' + reviseText + '</h3>';
-            }
-        }
-    };
-
-    return function startQuiz() {
-        current = 0;
-        score = 0;
-        nextBtn.style.display = 'none';
-        loadQuestion();
-    };
-}
-
-const startPretest = createQuiz('pretest', pretestQuiz, 8, 5, 'Excellent!', 'Good Job!', 'Revise Basics Again.');
-const startPosttest = createQuiz('posttest', posttestQuiz, 8, 5, 'Excellent! You mastered Jacobians.', 'Good Work! Practice a little more.', 'Revise the concepts again.');
-
-
-let variables = [];
-let functions = [];
-let jacobian = [];
-let actualDet = 0;
-
-function startJacobian() {
-    let n = parseInt(document.getElementById('n').value);
-    let funcInput = document.getElementById('functions').value;
-
-    if (!n || n < 1) {
-        alert('Please enter a valid number of variables.');
-        return;
+    
+    // ----- PRETEST FULL PAGE GENERATOR -----
+    function generatePretestPage() {
+        const pretestQuiz = [
+            { question: '1. Determinant of [[1,2],[3,4]] is:', options: ['-2', '2', '10', '0'], answer: 0 },
+            { question: '2. Determinant of identity matrix is:', options: ['0', '1', '2', '-1'], answer: 1 },
+            { question: '3. d/dx(x³) = ?', options: ['3x', 'x²', '3x²', 'x³'], answer: 2 },
+            { question: '4. d/dx(sin x) = ?', options: ['sin x', 'cos x', '-sin x', 'tan x'], answer: 1 },
+            { question: '5. ∂/∂x(x²+y²) = ?', options: ['2x', '2y', 'x+y', '0'], answer: 0 },
+            { question: '6. ∂/∂y(xy) = ?', options: ['x', 'y', 'xy', '1'], answer: 0 },
+            { question: '7. If two rows are equal, determinant is:', options: ['1', '0', '-1', 'Cannot say'], answer: 1 },
+            { question: '8. d/dx(eˣ) = ?', options: ['1', 'eˣ', 'xeˣ', '0'], answer: 1 },
+            { question: '9. 3×3 determinant is solved using:', options: ['Limits', 'Graphs', 'Expansion', 'Integration'], answer: 2 },
+            { question: '10. ∂/∂x(xy²) = ?', options: ['y²', '2xy', 'x²', 'xy'], answer: 0 }
+        ];
+        return generateQuizPage('Jacobian Pretest Quiz', pretestQuiz, 8, 5, 'Excellent! Ready for the lab.', 'Good Job! Revise once more.', 'Please review basic differentiation and determinants.');
     }
-
-    variables = [];
-    for (let i = 1; i <= n; i++) {
-        variables.push('x' + i);
+    
+    // ----- POSTTEST FULL PAGE GENERATOR -----
+    function generatePosttestPage() {
+        const posttestQuiz = [
+            { question: '1. If Jacobian ≠ 0 then functions are:', options: ['Dependent', 'Independent', 'Equal', 'Singular'], answer: 1 },
+            { question: '2. If u = x + y and v = 2x + 2y then functions are:', options: ['Independent', 'Orthogonal', 'Dependent', 'Continuous'], answer: 2 },
+            { question: '3. Determinant of [[2,1],[5,3]] is:', options: ['1', '-1', '6', '11'], answer: 0 },
+            { question: '4. Functions are dependent when:', options: ['J > 0', 'J < 0', 'J = 0', 'J = 1'], answer: 2 },
+            { question: '5. d/dx(x sin x) = ?', options: ['sin x', 'x cos x', 'sin x + x cos x', 'cos x - sin x'], answer: 2 },
+            { question: '6. ∂/∂y(xy + tan y) = ?', options: ['x + sec² y', 'y + tan y', 'x + tan y', 'xy + sec y'], answer: 0 },
+            { question: '7. d/dx(ln(x² + 1)) = ?', options: ['1/(x²+1)', '2x/(x²+1)', '2x ln x', 'ln(2x)'], answer: 1 },
+            { question: '8. If two rows are proportional then determinant is:', options: ['1', '∞', '0', '-1'], answer: 2 },
+            { question: '9. d/dx(eˣ cos x) = ?', options: ['eˣ cos x', 'eˣ(cos x - sin x)', 'eˣ sin x', 'cos x - sin x'], answer: 1 },
+            { question: '10. Jacobian of u = x² + y², v = x² - y² is:', options: ['-8xy', '8xy', '4xy', '2xy'], answer: 0 }
+        ];
+        return generateQuizPage('Jacobian Posttest Quiz', posttestQuiz, 8, 5, 'Excellent! You mastered Jacobians.', 'Good Work! Practice a little more.', 'Revise the concepts again.');
     }
-
-    functions = funcInput.split(',').map(f => f.trim());
-
-    if (functions.length !== n) {
-        alert(`Please enter exactly ${n} functions.`);
-        return;
-    }
-
-    jacobian = [];
-    let html = '<h4>Step 1: Enter Partial Derivatives</h4>';
-
-    try {
-        for (let i = 0; i < n; i++) {
-            let row = [];
-            for (let j = 0; j < n; j++) {
-                let derivative = math.derivative(functions[i], variables[j]).toString();
-                row.push(derivative);
-
-                html += `
-                    <label>∂f${i + 1}/∂${variables[j]}:</label><br>
-                    <input id="d${i}${j}" style="padding:6px; width:100%; max-width:300px;"><br><br>
-                `;
-            }
-            jacobian.push(row);
-        }
-    } catch (error) {
-        alert('Invalid function expression.');
-        return;
-    }
-
-    html += '<button class="feedback-button" onclick="checkDerivatives()">Check Derivatives</button>';
-
-    document.getElementById('derivatives').innerHTML = html;
-    document.getElementById('determinant').innerHTML = '';
-    document.getElementById('dependency').innerHTML = '';
-    document.getElementById('result').innerHTML = '';
-}
-
-function checkDerivatives() {
-    let n = variables.length;
-
-    for (let i = 0; i < n; i++) {
-        for (let j = 0; j < n; j++) {
-            let user = document.getElementById(`d${i}${j}`).value.trim();
-            let actual = jacobian[i][j];
-
-            try {
-                if (math.simplify(user).toString() !== math.simplify(actual).toString()) {
-                    alert(`Incorrect. Correct answer for ∂f${i + 1}/∂${variables[j]} is ${actual}`);
-                    showDeterminant();
+    
+    // Generic quiz page generator
+    function generateQuizPage(title, questions, excellentCutoff, goodCutoff, excellentMsg, goodMsg, reviseMsg) {
+        return `<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>${title}</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+            <style>
+                * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+                body { background: #f0f4f8; padding: 40px 20px; }
+                .quiz-container { max-width: 800px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); overflow: hidden; }
+                .quiz-header { background: linear-gradient(135deg, #2c3e50, #1a2530); color: white; padding: 30px; text-align: center; }
+                .quiz-header h1 { font-size: 28px; margin-bottom: 8px; }
+                .quiz-body { padding: 30px; }
+                .question-card { background: #f8f9fa; border-left: 5px solid #3498db; padding: 20px; margin-bottom: 20px; border-radius: 12px; }
+                .options-list { list-style: none; margin-top: 15px; }
+                .option-btn { background: white; border: 2px solid #e2e8f0; padding: 12px 18px; margin: 8px 0; border-radius: 40px; cursor: pointer; transition: all 0.2s; width: 100%; text-align: left; font-size: 16px; }
+                .option-btn:hover:not(:disabled) { background: #e8f4fc; border-color: #3498db; }
+                .option-btn.correct { background: #22c55e; border-color: #16a34a; color: white; }
+                .option-btn.wrong { background: #ef4444; border-color: #dc2626; color: white; text-decoration: line-through; }
+                .next-btn { background: #3498db; color: white; border: none; padding: 12px 30px; border-radius: 40px; font-size: 18px; cursor: pointer; margin-top: 20px; font-weight: bold; }
+                .next-btn:hover { background: #2c80b9; }
+                .score-area { text-align: center; margin-top: 30px; padding: 20px; background: #f1f5f9; border-radius: 16px; }
+                button:disabled { opacity: 0.7; cursor: not-allowed; }
+                .feedback-icon { font-size: 24px; margin-bottom: 10px; }
+                @media (max-width: 600px) { .quiz-body { padding: 20px; } .option-btn { padding: 10px 14px; } }
+            </style>
+        </head>
+        <body>
+        <div class="quiz-container">
+            <div class="quiz-header"><h1><i class="fas fa-clipboard-list"></i> ${title}</h1><p>Please attempt all questions</p></div>
+            <div class="quiz-body" id="quizApp"></div>
+        </div>
+        <script>
+            const quizQuestions = ${JSON.stringify(questions)};
+            const excellentCutoff = ${excellentCutoff};
+            const goodCutoff = ${goodCutoff};
+            const excellentMsg = "${excellentMsg}";
+            const goodMsg = "${goodMsg}";
+            const reviseMsg = "${reviseMsg}";
+            
+            let currentIndex = 0;
+            let userAnswers = new Array(quizQuestions.length).fill(null);
+            let quizFinished = false;
+            
+            function renderQuestion() {
+                const app = document.getElementById('quizApp');
+                if (quizFinished) {
+                    let correctCount = userAnswers.filter((ans, idx) => ans === quizQuestions[idx].answer).length;
+                    let message = '';
+                    if (correctCount >= excellentCutoff) message = excellentMsg;
+                    else if (correctCount >= goodCutoff) message = goodMsg;
+                    else message = reviseMsg;
+                    app.innerHTML = \`
+                        <div class="score-area">
+                            <div class="feedback-icon"><i class="fas fa-chart-line"></i></div>
+                            <h2>Your Score: \${correctCount} / \${quizQuestions.length}</h2>
+                            <p style="font-size: 1.2rem; margin-top: 15px;">\${message}</p>
+                            <button class="next-btn" onclick="window.close()">Close Window</button>
+                        </div>
+                    \`;
                     return;
                 }
-            } catch {
-                alert('Please enter valid derivative expressions.');
-                return;
+                const q = quizQuestions[currentIndex];
+                const selectedVal = userAnswers[currentIndex];
+                let optionsHtml = '';
+                q.options.forEach((opt, idx) => {
+                    let additionalClass = '';
+                    let disabledAttr = '';
+                    if (selectedVal !== null) {
+                        disabledAttr = 'disabled';
+                        if (idx === q.answer) additionalClass = 'correct';
+                        else if (idx === selectedVal && idx !== q.answer) additionalClass = 'wrong';
+                    }
+                    optionsHtml += \`<button class="option-btn \${additionalClass}" \${disabledAttr} onclick="selectAnswer(\${idx})">\${opt}</button>\`;
+                });
+                const nextDisabled = (selectedVal === null) ? 'disabled' : '';
+                app.innerHTML = \`
+                    <div class="question-card">
+                        <h3>\${q.question}</h3>
+                        <div class="options-list">\${optionsHtml}</div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span>Question \${currentIndex+1} of \${quizQuestions.length}</span>
+                        <button class="next-btn" \${nextDisabled} onclick="nextQuestion()">Next &rarr;</button>
+                    </div>
+                \`;
             }
-        }
+            
+            function selectAnswer(optIdx) {
+                if (userAnswers[currentIndex] !== null) return;
+                userAnswers[currentIndex] = optIdx;
+                renderQuestion();
+            }
+            
+            function nextQuestion() {
+                if (userAnswers[currentIndex] === null) return;
+                if (currentIndex + 1 < quizQuestions.length) {
+                    currentIndex++;
+                    renderQuestion();
+                } else {
+                    quizFinished = true;
+                    renderQuestion();
+                }
+            }
+            renderQuestion();
+        <\/script>
+        </body>
+        </html>`;
     }
-
-    alert('🎉 All derivatives are correct!');
-    showDeterminant();
-}
-
-function showDeterminant() {
-    let scope = {};
-    variables.forEach(v => scope[v] = 1);
-
-    let numericMatrix = jacobian.map(row =>
-        row.map(expr => math.evaluate(expr, scope))
-    );
-
-    actualDet = math.det(numericMatrix);
-
-    document.getElementById('determinant').innerHTML = `
-        <h4>Step 2: Enter Determinant</h4>
-        <input id="userDet" style="padding:6px; width:100%; max-width:300px;"><br><br>
-        <button class="feedback-button" onclick="checkDet()">Check Determinant</button>
-    `;
-}
-
-function checkDet() {
-    let userDet = parseFloat(document.getElementById('userDet').value);
-
-    if (Math.abs(userDet - actualDet) < 1e-6) {
-        document.getElementById('result').innerHTML = '🎉 Correct Jacobian Determinant!';
-    } else {
-        document.getElementById('result').innerHTML =
-            `❌ Incorrect. Correct determinant = ${actualDet}`;
+    
+    // ----- SIMULATION FULL PAGE GENERATOR -----
+    function generateSimulationPage() {
+        return `<!DOCTYPE html>
+        <html lang="en">
+        <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Jacobian Simulation Tool</title><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"><\/script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;} body{background:#eef2f5;padding:30px;}.sim-card{max-width:1000px;margin:0 auto;background:white;border-radius:24px;box-shadow:0 20px 40px rgba(0,0,0,0.1);overflow:hidden;}.header{background:linear-gradient(135deg,#2c3e50,#1a2530);color:white;padding:25px;text-align:center;}.body{padding:30px;}.ctrl-group{margin-bottom:25px;}label{font-weight:600;display:block;margin-bottom:8px;}input,textarea{width:100%;padding:12px;border:2px solid #e2e8f0;border-radius:12px;font-size:15px;}.btn{background:#3498db;color:white;border:none;padding:12px 28px;border-radius:40px;cursor:pointer;font-weight:bold;font-size:16px;margin-top:10px;}.btn:hover{background:#2c80b9;}.result-box{background:#f8fafc;border-radius:20px;padding:20px;margin-top:25px;border-left:5px solid #3498db;}.deriv-input{margin:6px 0;}hr{margin:20px 0;}</style></head>
+        <body><div class="sim-card"><div class="header"><h1><i class="fas fa-calculator"></i> Jacobian Active Learning Tool</h1><p>Compute Jacobian Matrix • Determinant • Functional Dependency</p></div><div class="body"><div class="ctrl-group"><label>🔢 Number of variables (n):</label><input type="number" id="nVar" min="1" value="2" step="1"></div><div class="ctrl-group"><label>📝 Functions (comma separated, e.g., x1+x2, x1-x2):</label><textarea id="funcs" rows="2" placeholder="Example: x1^2 + x2, x1 - x2^2"></textarea></div><button class="btn" id="runSimBtn"><i class="fas fa-play"></i> Compute Jacobian</button><div id="simOutput"></div></div></div><script>
+        function startSimulation(){let n=parseInt(document.getElementById('nVar').value);let funcInput=document.getElementById('funcs').value.trim();if(!n||n<1){alert('Enter valid n');return;}let vars=[];for(let i=1;i<=n;i++)vars.push('x'+i);let functions=funcInput.split(',').map(f=>f.trim());if(functions.length!==n){alert(\`Enter exactly \${n} function(s).\`);return;}let jacobianMatrix=[];try{for(let i=0;i<n;i++){let row=[];for(let j=0;j<n;j++){let deriv=math.derivative(functions[i],vars[j]).toString();row.push(deriv);}jacobianMatrix.push(row);}}catch(e){alert('Invalid function expression. Use x1, x2, etc.');return;}let scope={};vars.forEach(v=>scope[v]=1);let numericMatrix=jacobianMatrix.map(row=>row.map(expr=>math.evaluate(expr,scope)));let detValue=math.det(numericMatrix);let outputHtml='<div class="result-box"><h3>📐 Jacobian Matrix (symbolic)</h3><table style="border-collapse:collapse;width:100%">';for(let i=0;i<n;i++){outputHtml+='<tr>';for(let j=0;j<n;j++){outputHtml+=\`<td style="border:1px solid #cbd5e1;padding:8px;text-align:center">∂f<sub>\${i+1}</sub>/∂${vars[j]} = \${jacobianMatrix[i][j]}</td>\`;}outputHtml+='</tr>';}outputHtml+='</table><hr><h3>🧮 Numerical Determinant (at x_i=1)</h3><p style="font-size:1.5rem;font-weight:bold;">J = '+detValue.toFixed(6)+'</p><h3>🔍 Functional Dependency</h3><p>';if(Math.abs(detValue)<1e-6)outputHtml+='<span style="color:#dc2626">⚠️ Functions are DEPENDENT (J = 0)</span>';else outputHtml+='<span style="color:#16a34a">✅ Functions are INDEPENDENT (J ≠ 0)</span>';outputHtml+='</p><button class="btn" id="resetBtn" style="margin-top:15px;background:#475569;" onclick="location.reload();"><i class="fas fa-sync-alt"></i> New Simulation</button></div>';document.getElementById('simOutput').innerHTML=outputHtml;}document.getElementById('runSimBtn').addEventListener('click',startSimulation);<\/script></body></html>`;
     }
-
-    showDependency();
-}
-
-function showDependency() {
-    document.getElementById('dependency').innerHTML = `
-        <h4>Step 3: Dependency Check</h4>
-        <p><strong>Theory:</strong><br>
-        If J = 0 → Functions are DEPENDENT<br>
-        If J ≠ 0 → Functions are INDEPENDENT</p>
-        <button class="feedback-button" onclick="checkDependency()">
-            Check Dependency
-        </button>
-    `;
-}
-
-function checkDependency() {
-    if (Math.abs(actualDet) < 1e-6) {
-        document.getElementById('result').innerHTML +=
-            '<br>Functions are DEPENDENT';
-    } else {
-        document.getElementById('result').innerHTML +=
-            '<br>Functions are INDEPENDENT';
+    
+    // ----- FEEDBACK FULL PAGE GENERATOR -----
+    function generateFeedbackPage() {
+        return `<!DOCTYPE html>
+        <html lang="en">
+        <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Feedback - Virtual Labs</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}body{background:linear-gradient(145deg,#eef2f5 0%,#e2e8f0 100%);min-height:100vh;padding:40px 20px;}.feedback-card{max-width:750px;margin:0 auto;background:white;border-radius:32px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.25);overflow:hidden;}.feedback-header{background:linear-gradient(135deg,#2c3e50,#1e2a37);color:white;padding:30px;text-align:center;}.feedback-body{padding:35px;}.form-group{margin-bottom:22px;}label{font-weight:600;display:block;margin-bottom:8px;color:#1e293b;}input,select,textarea{width:100%;padding:12px;border:2px solid #cbd5e1;border-radius:16px;font-size:15px;transition:0.2s;}input:focus,select:focus,textarea:focus{outline:none;border-color:#3498db;box-shadow:0 0 0 3px rgba(52,152,219,0.2);}.submit-btn{background:#3498db;color:white;border:none;padding:14px 28px;border-radius:40px;font-size:18px;font-weight:bold;cursor:pointer;width:100%;margin-top:15px;}.submit-btn:hover{background:#2c80b9;}.success-msg{background:#dcfce7;color:#166534;padding:15px;border-radius:20px;margin-top:20px;text-align:center;}.close-btn{background:#475569;margin-top:15px;padding:10px;border-radius:40px;color:white;border:none;cursor:pointer;}</style></head>
+        <body><div class="feedback-card"><div class="feedback-header"><i class="fas fa-comment-dots" style="font-size:42px;"></i><h1>We Value Your Feedback</h1><p>Help us improve the Jacobian Virtual Lab</p></div><div class="feedback-body"><div class="form-group"><label>Full Name:</label><input type="text" id="fbName" placeholder="Enter your name"></div><div class="form-group"><label>Class / Division:</label><input type="text" id="fbClass" placeholder="e.g., SE Comp A"></div><div class="form-group"><label>Overall Rating:</label><select id="fbRating"><option value="">Select Rating</option><option>⭐ 5 - Excellent</option><option>⭐ 4 - Very Good</option><option>⭐ 3 - Good</option><option>⭐ 2 - Fair</option><option>⭐ 1 - Poor</option></select></div><div class="form-group"><label>Did this lab improve your understanding of Jacobians?</label><select id="fbUnderstanding"><option value="">Select</option><option>Yes, significantly</option><option>Yes, somewhat</option><option>Neutral</option><option>No</option></select></div><div class="form-group"><label>Most Helpful Section:</label><select id="fbSection"><option value="">Select</option><option>Aim</option><option>Theory</option><option>Pretest</option><option>Simulation</option><option>Posttest</option><option>References</option></select></div><div class="form-group"><label>Suggestions / Comments:</label><textarea id="fbComments" rows="4" placeholder="Your valuable feedback..."></textarea></div><button class="submit-btn" id="submitFeedbackBtn"><i class="fas fa-paper-plane"></i> Submit Feedback</button><div id="fbMessage"></div><button class="close-btn" id="closeWindowBtn" style="display:none;">Close Window</button></div></div><script>
+        document.getElementById('submitFeedbackBtn').addEventListener('click',function(){let name=document.getElementById('fbName').value.trim();let cls=document.getElementById('fbClass').value.trim();let rating=document.getElementById('fbRating').value;let understand=document.getElementById('fbUnderstanding').value;let section=document.getElementById('fbSection').value;let comments=document.getElementById('fbComments').value;if(!name||!cls){alert('Please enter your name and class/division.');return;}let msgDiv=document.getElementById('fbMessage');msgDiv.innerHTML='<div class="success-msg"><i class="fas fa-check-circle"></i> Thank you, '+name+'! Your feedback has been recorded.<br>Appreciate your contribution to Virtual Labs.</div>';document.getElementById('submitFeedbackBtn').disabled=true;document.getElementById('closeWindowBtn').style.display='inline-block';});document.getElementById('closeWindowBtn').addEventListener('click',function(){window.close();});<\/script></body></html>`;
     }
-}
-
-function submitFeedback() {
-    document.getElementById('feedbackMessage').innerHTML =
-        'Thank you for your valuable feedback!';
-}
-</script>
-
-</body>
-</html>
+    
+    // Handle section cards navigation
+    document.addEventListener('DOMContentLoaded', function () {
+        const sectionCards = document.querySelectorAll('.section-card');
+        const container = document.getElementById('inlineContentContainer');
+        
+        // Clear inline container
+        if(container) container.innerHTML = '';
+        
+        // For sections that DO open in a new page: Pretest, Posttest, Simulation, Feedback
+        const newPageSections = new Set(['pretest', 'posttest', 'simulation', 'feedback']);
+        
+        // For inline sections: Aim, Theory, References, Contributors
+        async function loadInlineContent(sectionName) {
+            if(!container) return;
+            if(sectionName === 'aim') {
+                container.innerHTML = \`
+                    <div class="question-section">
+                        <h3><i class="fas fa-bullseye"></i> Aim</h3>
+                        <p>To understand the concept of Jacobian matrix and determinant for functions of several variables.</p>
+                        <p>To analyze functional dependency between transformations using Jacobian determinant.</p>
+                        <p>To compute partial derivatives and evaluate whether given functions are functionally dependent or independent.</p>
+                        <p>To apply Jacobian in change of variables, optimization, and engineering mathematics problems.</p>
+                    </div>
+                \`;
+            } else if(sectionName === 'theory') {
+                container.innerHTML = \`
+                    <div class="question-section">
+                        <h3><i class="fas fa-book"></i> Theory: Jacobians</h3>
+                        <p><strong>Jacobian Matrix:</strong> For functions f₁, f₂, ..., fₙ of variables x₁, x₂, ..., xₙ, the Jacobian matrix J is an n×n matrix of first-order partial derivatives: J_ij = ∂f_i/∂x_j.</p>
+                        <p><strong>Jacobian Determinant:</strong> det(J) indicates whether functions are functionally dependent. If det(J) = 0, the functions are dependent; otherwise independent.</p>
+                        <p><strong>Applications:</strong> Change of variables in multiple integrals, inverse function theorem, stability analysis, robotics kinematics.</p>
+                        <p><strong>Formula:</strong> J = \\begin{vmatrix} \\frac{\\partial f_1}{
