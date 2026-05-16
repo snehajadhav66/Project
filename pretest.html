@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jacobian Pretest Quiz</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    background:#f3f4f6;
+    padding:40px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0px 0px 10px rgba(0,0,0,0.2);
+}
+
+h1{
+    text-align:center;
+    color:#1e3a8a;
+}
+
+.question{
+    font-size:22px;
+    margin-bottom:20px;
+    font-weight:bold;
+}
+
+.option{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:18px;
+    background:#dbeafe;
+}
+
+.option:hover{
+    background:#93c5fd;
+}
+
+.correct{
+    background:#22c55e !important;
+    color:white;
+}
+
+.wrong{
+    background:#ef4444 !important;
+    color:white;
+}
+
+#nextBtn{
+    margin-top:20px;
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-size:18px;
+    display:none;
+    cursor:pointer;
+}
+
+#score{
+    text-align:center;
+    margin-top:20px;
+    font-size:24px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🧠 Jacobian Pretest Quiz</h1>
+
+<div id="question" class="question"></div>
+
+<div id="options"></div>
+
+<button id="nextBtn">Next Question</button>
+
+<div id="score"></div>
+
+</div>
+
+<script>
+
+const quiz = [
+
+{
+question:"1. Determinant of [[1,2],[3,4]] is:",
+options:["-2","2","10","0"],
+answer:0
+},
+
+{
+question:"2. Determinant of identity matrix is:",
+options:["0","1","2","-1"],
+answer:1
+},
+
+{
+question:"3. d/dx(x³) = ?",
+options:["3x","x²","3x²","x³"],
+answer:2
+},
+
+{
+question:"4. d/dx(sin x) = ?",
+options:["sin x","cos x","-sin x","tan x"],
+answer:1
+},
+
+{
+question:"5. ∂/∂x(x²+y²) = ?",
+options:["2x","2y","x+y","0"],
+answer:0
+},
+
+{
+question:"6. ∂/∂y(xy) = ?",
+options:["x","y","xy","1"],
+answer:0
+},
+
+{
+question:"7. If two rows are equal, determinant is:",
+options:["1","0","-1","Cannot say"],
+answer:1
+},
+
+{
+question:"8. d/dx(eˣ) = ?",
+options:["1","eˣ","xeˣ","0"],
+answer:1
+},
+
+{
+question:"9. 3×3 determinant is solved using:",
+options:["Limits","Graphs","Expansion","Integration"],
+answer:2
+},
+
+{
+question:"10. ∂/∂x(xy²) = ?",
+options:["y²","2xy","x²","xy"],
+answer:0
+}
+
+];
+
+let current = 0;
+let score = 0;
+
+const question = document.getElementById("question");
+const options = document.getElementById("options");
+const nextBtn = document.getElementById("nextBtn");
+const scoreBox = document.getElementById("score");
+
+function loadQuestion(){
+
+let q = quiz[current];
+
+question.innerText = q.question;
+
+options.innerHTML = "";
+
+q.options.forEach((opt,index)=>{
+
+let btn = document.createElement("button");
+
+btn.innerText = opt;
+
+btn.classList.add("option");
+
+btn.onclick = () => checkAnswer(index,btn);
+
+options.appendChild(btn);
+
+});
+
+}
+
+function checkAnswer(selected,btn){
+
+let correct = quiz[current].answer;
+
+let buttons = document.querySelectorAll(".option");
+
+buttons.forEach(button=>{
+button.disabled = true;
+});
+
+if(selected === correct){
+
+btn.classList.add("correct");
+
+score++;
+
+}
+else{
+
+btn.classList.add("wrong");
+
+buttons[correct].classList.add("correct");
+
+}
+
+nextBtn.style.display = "block";
+
+}
+
+nextBtn.addEventListener("click",()=>{
+
+current++;
+
+nextBtn.style.display = "none";
+
+if(current < quiz.length){
+
+loadQuestion();
+
+}
+else{
+
+showScore();
+
+}
+
+});
+
+function showScore(){
+
+question.style.display = "none";
+options.style.display = "none";
+nextBtn.style.display = "none";
+
+scoreBox.innerHTML = `
+<h2>🎯 Your Score: ${score}/10</h2>
+`;
+
+if(score >= 8){
+
+scoreBox.innerHTML += "<h3>🔥 Excellent!</h3>";
+
+}
+else if(score >=5){
+
+scoreBox.innerHTML += "<h3>👍 Good Job!</h3>";
+
+}
+else{
+
+scoreBox.innerHTML += "<h3>📘 Revise Basics Again.</h3>";
+
+}
+
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
