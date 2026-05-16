@@ -442,25 +442,28 @@ document.addEventListener('DOMContentLoaded', function () {
         card.addEventListener('click', () => {
             sectionCards.forEach(c => c.classList.remove('active'));
             card.classList.add('active');
+const sectionName = card.querySelector('h3').textContent;
+if (sectionName === 'Aim') {
+    window.location.href = 'aim.html';
+}
+if (sectionName === 'Theory') {
+    window.location.href = 'theory.html';
+}
+if (sectionName === 'Pretest') {
+    window.location.href = 'pretest.html';
+}
+if (sectionName === 'Simulation') {
+    window.location.href = 'simulation.html';
+}
+if (sectionName === 'Posttest') {
+    window.location.href = 'posttest.html';
+}
+if (sectionName === 'Feedback') {
+    alert('Thank you for your feedback!');
+}
+           
 
-            const simulation = document.getElementById('simulationSection');
-            const theory = document.getElementById('theorySection');
-            simulation.style.display = 'none';
-            theory.style.display = 'none';
-
-            const sectionName = card.querySelector('h3').textContent;
-
-            if (sectionName === 'Simulation') {
-                simulation.style.display = 'block';
-            }
-
-            if (sectionName === 'Theory') {
-                window.location.href = 'theory.html';
-            }
-
-            if (sectionName === 'Feedback') {
-                alert('Thank you for your feedback!');
-            }
+            
         });
     });
 });
