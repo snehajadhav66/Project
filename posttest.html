@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jacobian Posttest Quiz</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#f3f4f6;
+    margin:0;
+    padding:40px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0px 0px 15px rgba(0,0,0,0.2);
+}
+
+h1{
+    text-align:center;
+    color:#1e3a8a;
+}
+
+.question{
+    font-size:24px;
+    margin-bottom:20px;
+    font-weight:bold;
+    line-height:1.6;
+}
+
+.option{
+    width:100%;
+    padding:14px;
+    margin:10px 0;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background:#dbeafe;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.option:hover{
+    background:#93c5fd;
+}
+
+.correct{
+    background:#22c55e !important;
+    color:white;
+}
+
+.wrong{
+    background:#ef4444 !important;
+    color:white;
+}
+
+#nextBtn{
+    margin-top:20px;
+    padding:14px 22px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    display:none;
+}
+
+#scoreBox{
+    text-align:center;
+    margin-top:20px;
+    font-size:26px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🧠 Jacobian Posttest Quiz</h1>
+
+<div id="question" class="question"></div>
+
+<div id="options"></div>
+
+<button id="nextBtn">Next Question</button>
+
+<div id="scoreBox"></div>
+
+</div>
+
+<script>
+
+const quiz = [
+
+{
+question:"1. Find the Jacobian of u=x²+y² , v=x-y",
+options:["2x+2y","2x-2y","x+y","x-y"],
+answer:1
+},
+
+{
+question:"2. Determinant of [[1,2,3],[0,1,4],[5,6,0]] is:",
+options:["1","-1","5","10"],
+answer:0
+},
+
+{
+question:"3. ∂/∂x (x²y³ + sinx) = ?",
+options:["2xy³+cosx","x²y²+cosx","2xy²+sinx","3x²y²+cosx"],
+answer:0
+},
+
+{
+question:"4. If u=x+y and v=2x+2y then functions are:",
+options:["Independent","Orthogonal","Dependent","Continuous"],
+answer:2
+},
+
+{
+question:"5. d/dx (x²eˣ) = ?",
+options:["2xeˣ","x²eˣ","eˣ(x²+2x)","2x+eˣ"],
+answer:2
+},
+
+{
+question:"6. Jacobian of u=x²-y² , v=2xy is:",
+options:["4x²+4y²","2x+2y","x²+y²","4xy"],
+answer:0
+},
+
+{
+question:"7. ∂/∂y (x³y² + eʸ) = ?",
+options:["2x³y+eʸ","3x²y²+eʸ","x³y+eʸ","2xy²+eʸ"],
+answer:0
+},
+
+{
+question:"8. If Jacobian ≠ 0 then functions are:",
+options:["Dependent","Independent","Equal","Singular"],
+answer:1
+},
+
+{
+question:"9. d/dx ln(x²+1) = ?",
+options:["1/(x²+1)","2x/(x²+1)","2xlnx","ln(2x)"],
+answer:1
+},
+
+{
+question:"10. Jacobian of u=x+y+z , v=x-y+z wrt x,y is:",
+options:["2","-2","1","0"],
+answer:1
+},
+
+{
+question:"11. ∂/∂x (x²y + xcosx) = ?",
+options:["2xy+cosx","2xy+cosx-xsinx","x²-sinx","2xy-xcosx"],
+answer:1
+},
+
+{
+question:"12. If two rows are proportional then determinant is:",
+options:["1","∞","0","-1"],
+answer:2
+},
+
+{
+question:"13. d/dx (xsinx) = ?",
+options:["sinx","xcosx","sinx+xcosx","cosx-sinx"],
+answer:2
+},
+
+{
+question:"14. Jacobian of u=x²+y , v=y²+x is:",
+options:["4xy-1","4xy+1","2x+2y","x²+y²"],
+answer:0
+},
+
+{
+question:"15. ∂/∂y (xy + tany) = ?",
+options:["x+sec²y","y+tany","x+tany","xy+secy"],
+answer:0
+},
+
+{
+question:"16. Determinant of [[2,1],[5,3]] is:",
+options:["1","-1","6","11"],
+answer:0
+},
+
+{
+question:"17. Functions are dependent when:",
+options:["J>0","J<0","J=0","J=1"],
+answer:2
+},
+
+{
+question:"18. d/dx (eˣcosx) = ?",
+options:["eˣcosx","eˣ(cosx-sinx)","eˣsinx","cosx-sinx"],
+answer:1
+},
+
+{
+question:"19. ∂/∂x (x²y² + lnx) = ?",
+options:["2xy²+1/x","2x²y+1/x","xy²+lnx","2xy+lnx"],
+answer:0
+},
+
+{
+question:"20. Jacobian of u=x²+y² , v=x²-y² is:",
+options:["-8xy","8xy","4xy","2xy"],
+answer:0
+}
+
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+const question = document.getElementById("question");
+const options = document.getElementById("options");
+const nextBtn = document.getElementById("nextBtn");
+const scoreBox = document.getElementById("scoreBox");
+
+function loadQuestion(){
+
+let q = quiz[currentQuestion];
+
+question.innerHTML = q.question;
+
+options.innerHTML = "";
+
+q.options.forEach((option,index)=>{
+
+let btn = document.createElement("button");
+
+btn.innerHTML = option;
+
+btn.classList.add("option");
+
+btn.onclick = () => checkAnswer(index,btn);
+
+options.appendChild(btn);
+
+});
+
+}
+
+function checkAnswer(selected,btn){
+
+let correct = quiz[currentQuestion].answer;
+
+let buttons = document.querySelectorAll(".option");
+
+buttons.forEach(button=>{
+button.disabled = true;
+});
+
+if(selected === correct){
+
+btn.classList.add("correct");
+
+score++;
+
+}
+else{
+
+btn.classList.add("wrong");
+
+buttons[correct].classList.add("correct");
+
+}
+
+nextBtn.style.display = "block";
+
+}
+
+nextBtn.addEventListener("click",()=>{
+
+currentQuestion++;
+
+nextBtn.style.display = "none";
+
+if(currentQuestion < quiz.length){
+
+loadQuestion();
+
+}
+else{
+
+showScore();
+
+}
+
+});
+
+function showScore(){
+
+question.style.display = "none";
+options.style.display = "none";
+nextBtn.style.display = "none";
+
+scoreBox.innerHTML = `
+<h2>🎯 Your Score: ${score}/20</h2>
+`;
+
+if(score >= 16){
+
+scoreBox.innerHTML += "<h3>🔥 Excellent! You mastered Jacobians.</h3>";
+
+}
+else if(score >= 10){
+
+scoreBox.innerHTML += "<h3>👍 Good Work! Practice a little more.</h3>";
+
+}
+else{
+
+scoreBox.innerHTML += "<h3>📘 Revise the concepts again.</h3>";
+
+}
+
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
