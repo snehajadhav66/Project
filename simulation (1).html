@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Labs - Jacobians | Simulation</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50, #1a2530);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .pcce-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-right: 25px;
+            border-right: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .pcce-logo-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 8px;
+            background-color: white;
+            padding: 5px;
+        }
+
+        .pcce-logo-text .main {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .pcce-logo-text .sub {
+            font-size: 12px;
+            color: #ecf0f1;
+            opacity: 0.9;
+            margin-top: 2px;
+        }
+
+        .virtual-labs-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .virtual-labs-logo i {
+            font-size: 32px;
+            color: #3498db;
+        }
+
+        .virtual-labs-logo h1 {
+            font-size: 26px;
+            font-weight: 600;
+        }
+
+        .virtual-labs-logo span {
+            color: #3498db;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-info i {
+            font-size: 20px;
+            color: #3498db;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 30px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            min-height: 600px;
+        }
+
+        .content-header {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .content-header h2 {
+            font-size: 28px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .content-header p {
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        .question-section {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 5px solid #3498db;
+        }
+
+        .question-section h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .feedback-button {
+            background: linear-gradient(to right, #3498db, #2c80b9);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .feedback-button:hover {
+            background: linear-gradient(to right, #2c80b9, #216794);
+        }
+
+        input {
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 20px 0;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 14px;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .logo-section {
+                flex-direction: column;
+            }
+
+            .pcce-logo-container {
+                border-right: none;
+                padding-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-container">
+        <div class="logo-section">
+            <div class="pcce-logo-container">
+                <img src="https://raw.githubusercontent.com/dineshkute90/virtual_lab_LAUC/main/pccoe.png"
+                     alt="PCOE Logo"
+                     class="pcce-logo-img"
+                     onerror="this.src='https://via.placeholder.com/60x60/2c3e50/ffffff?text=PCOE';">
+                <div class="pcce-logo-text">
+                    <div class="main">APPLIED SCIENCES & HUMANITIES</div>
+                    <div class="sub">Pimpri Chinchwad College of Engineering</div>
+                </div>
+            </div>
+
+            <div class="virtual-labs-logo">
+                <i class="fas fa-flask"></i>
+                <h1>Virtual <span>Labs</span></h1>
+            </div>
+        </div>
+
+        <div class="user-info">
+            <i class="fas fa-user-circle"></i>
+            <span>Welcome, Student</span>
+        </div>
+    </div>
+</header>
+
+<main class="content">
+    <div class="content-header">
+        <h2>A Virtual Lab on Jacobians</h2>
+        <p>Engineering Mathematics Experiment — Simulation</p>
+    </div>
+
+    <!-- Simulation Section -->
+    <div id="simulationSection">
+        <div class="question-section">
+            <h3>Jacobian Active Learning Tool</h3>
+
+            <label>Number of variables:</label><br>
+            <input type="number" id="n" min="1"
+                   style="padding:8px; width:100%; max-width:300px;"><br><br>
+
+            <label>Functions (comma separated):</label><br>
+            <input type="text" id="functions"
+                   placeholder="x1+x2, x1-x2"
+                   style="padding:8px; width:100%; max-width:500px;"><br><br>
+
+            <button class="feedback-button" onclick="startJacobian()">
+                Start Simulation
+            </button>
+
+            <div id="derivatives" style="margin-top:20px;"></div>
+            <div id="determinant" style="margin-top:20px;"></div>
+            <div id="dependency" style="margin-top:20px;"></div>
+            <div id="result" style="margin-top:20px; font-weight:bold;"></div>
+        </div>
+    </div>
+</main>
+
+<footer class="container">
+    <p>
+        Virtual Labs &copy; 2025 | Applied Sciences & Humanities Department |
+        Pimpri Chinchwad College of Engineering
+    </p>
+</footer>
+
+<script>
+let variables = [];
+let functions = [];
+let jacobian = [];
+let actualDet = 0;
+
+function startJacobian() {
+    let n = parseInt(document.getElementById('n').value);
+    let funcInput = document.getElementById('functions').value;
+
+    if (!n || n < 1) {
+        alert('Please enter a valid number of variables.');
+        return;
+    }
+
+    variables = [];
+    for (let i = 1; i <= n; i++) {
+        variables.push('x' + i);
+    }
+
+    functions = funcInput.split(',').map(f => f.trim());
+
+    if (functions.length !== n) {
+        alert(`Please enter exactly ${n} functions.`);
+        return;
+    }
+
+    jacobian = [];
+    let html = '<h4>Step 1: Enter Partial Derivatives</h4>';
+
+    try {
+        for (let i = 0; i < n; i++) {
+            let row = [];
+            for (let j = 0; j < n; j++) {
+                let derivative = math.derivative(functions[i], variables[j]).toString();
+                row.push(derivative);
+
+                html += `
+                    <label>∂f${i + 1}/∂${variables[j]}:</label><br>
+                    <input id="d${i}${j}" style="padding:6px; width:100%; max-width:300px;"><br><br>
+                `;
+            }
+            jacobian.push(row);
+        }
+    } catch (error) {
+        alert('Invalid function expression.');
+        return;
+    }
+
+    html += '<button class="feedback-button" onclick="checkDerivatives()">Check Derivatives</button>';
+
+    document.getElementById('derivatives').innerHTML = html;
+    document.getElementById('determinant').innerHTML = '';
+    document.getElementById('dependency').innerHTML = '';
+    document.getElementById('result').innerHTML = '';
+}
+
+function checkDerivatives() {
+    let n = variables.length;
+
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            let user = document.getElementById(`d${i}${j}`).value.trim();
+            let actual = jacobian[i][j];
+
+            try {
+                if (math.simplify(user).toString() !== math.simplify(actual).toString()) {
+                    alert(`Incorrect. Correct answer for ∂f${i + 1}/∂${variables[j]} is ${actual}`);
+                    showDeterminant();
+                    return;
+                }
+            } catch {
+                alert('Please enter valid derivative expressions.');
+                return;
+            }
+        }
+    }
+
+    alert('🎉 All derivatives are correct!');
+    showDeterminant();
+}
+
+function showDeterminant() {
+    let scope = {};
+    variables.forEach(v => scope[v] = 1);
+
+    let numericMatrix = jacobian.map(row =>
+        row.map(expr => math.evaluate(expr, scope))
+    );
+
+    actualDet = math.det(numericMatrix);
+
+    document.getElementById('determinant').innerHTML = `
+        <h4>Step 2: Enter Determinant</h4>
+        <input id="userDet" style="padding:6px; width:100%; max-width:300px;"><br><br>
+        <button class="feedback-button" onclick="checkDet()">Check Determinant</button>
+    `;
+}
+
+function checkDet() {
+    let userDet = parseFloat(document.getElementById('userDet').value);
+
+    if (Math.abs(userDet - actualDet) < 1e-6) {
+        document.getElementById('result').innerHTML = '🎉 Correct Jacobian Determinant!';
+    } else {
+        document.getElementById('result').innerHTML =
+            `❌ Incorrect. Correct determinant = ${actualDet}`;
+    }
+
+    showDependency();
+}
+
+function showDependency() {
+    document.getElementById('dependency').innerHTML = `
+        <h4>Step 3: Dependency Check</h4>
+        <p><strong>Theory:</strong><br>
+        If J = 0 → Functions are DEPENDENT<br>
+        If J ≠ 0 → Functions are INDEPENDENT</p>
+        <button class="feedback-button" onclick="checkDependency()">
+            Check Dependency
+        </button>
+    `;
+}
+
+function checkDependency() {
+    if (Math.abs(actualDet) < 1e-6) {
+        document.getElementById('result').innerHTML +=
+            '<br>Functions are DEPENDENT';
+    } else {
+        document.getElementById('result').innerHTML +=
+            '<br>Functions are INDEPENDENT';
+    }
+}
+</script>
+
+</body>
+</html>
