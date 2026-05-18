@@ -1,11 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>FEEDBACK</title>
+    <meta charset="UTF-8">
+    <title>Feedback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background: #3498db;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-btn:hover { background: #2176ae; }
+        .question-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h3 { color: #2c3e50; }
+        input, select, textarea {
+            padding: 8px;
+            width: 100%;
+            max-width: 500px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        textarea { max-width: 700px; }
+        .feedback-button {
+            padding: 10px 25px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .feedback-button:hover { background: #2176ae; }
+        label { font-weight: bold; }
+    </style>
 </head>
 <body>
 
-<!-- PASTE CONTRIBUTORS CODE HERE -->
+    <a href="index.html" class="back-btn">← Back to Main Lab</a>
+
+    <div class="question-section">
+        <h3>Feedback Form</h3>
+        <p>We value your feedback. Please share your experience using this virtual lab.</p>
+
+        <label>Name:</label><br>
+        <input type="text" id="studentName" placeholder="Enter your name"><br><br>
+
+        <label>Class / Division:</label><br>
+        <input type="text" id="studentClass" placeholder="Enter your class or division"><br><br>
+
+        <label>Overall Rating:</label><br>
+        <select id="rating" style="max-width:250px;">
+            <option value="">Select Rating</option>
+            <option>⭐ 5 - Excellent</option>
+            <option>⭐ 4 - Very Good</option>
+            <option>⭐ 3 - Good</option>
+            <option>⭐ 2 - Fair</option>
+            <option>⭐ 1 - Poor</option>
+        </select><br><br>
+
+        <label>Did this virtual lab improve your understanding of Jacobians?</label><br>
+        <select id="conceptUnderstanding" style="max-width:350px;">
+            <option value="">Select</option>
+            <option>Yes, significantly</option>
+            <option>Yes, somewhat</option>
+            <option>Neutral</option>
+            <option>No</option>
+        </select><br><br>
+
+        <label>Most Helpful Section:</label><br>
+        <select id="favoriteSection" style="max-width:300px;">
+            <option value="">Select</option>
+            <option>Aim</option>
+            <option>Theory</option>
+            <option>Pretest</option>
+            <option>Simulation</option>
+            <option>Posttest</option>
+            <option>References</option>
+        </select><br><br>
+
+        <label>Suggestions / Comments:</label><br>
+        <textarea id="comments" rows="5" placeholder="Write your feedback here..."></textarea>
+        <br><br>
+
+        <button class="feedback-button" onclick="submitFeedback()">Submit Feedback</button>
+
+        <div id="feedbackMessage" style="margin-top:20px; font-weight:bold; color:#22c55e;"></div>
+    </div>
+
+    <script>
+        function submitFeedback() {
+            document.getElementById('feedbackMessage').innerHTML =
+                '✅ Thank you for your valuable feedback!';
+            document.getElementById('studentName').value = '';
+            document.getElementById('studentClass').value = '';
+            document.getElementById('rating').value = '';
+            document.getElementById('conceptUnderstanding').value = '';
+            document.getElementById('favoriteSection').value = '';
+            document.getElementById('comments').value = '';
+        }
+    </script>
 
 </body>
 </html>
